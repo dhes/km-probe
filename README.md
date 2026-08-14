@@ -34,3 +34,15 @@ Then:
 
     ./gradlew run      # full battery
     ./gradlew repro    # minimal kotlin-fhir#123 reproduction (no corpus needed)
+
+## Acceptance run for kotlin-fhir#123
+
+To validate a candidate fix for
+[ohs-foundation/kotlin-fhir#123](https://github.com/ohs-foundation/kotlin-fhir/issues/123),
+override the model version:
+
+    ./gradlew repro -PfhirModelVersion=<fixed-version>   # should print "Parsed: PlanDefinition"
+    ./gradlew run   -PfhirModelVersion=<fixed-version>   # census: PlanDefinition 0 -> 138, Measure 0 -> 41
+
+A fixed model turns the three expected `[FAIL]` findings into `[PASS]` and the import's
+183 load errors into 4 (the non-resource files).
