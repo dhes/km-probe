@@ -10,7 +10,7 @@
 set -euo pipefail
 cd "$(dirname "$0")"
 
-KNOWN_BROKEN="1.0.0-beta05"
+KNOWN_BROKEN="1.0.0-rc02" # newest version verified to still lack the #123 fix
 
 VERSION="${1:-}"
 if [ -z "$VERSION" ]; then
