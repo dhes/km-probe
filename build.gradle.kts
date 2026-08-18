@@ -39,3 +39,10 @@ tasks.register<JavaExec>("repro") {
     classpath = sourceSets["main"].runtimeClasspath
     mainClass.set("ReproKt")
 }
+
+// Corpus readiness scanner: ./fetch-corpus.sh then ./gradlew scan [-PfhirModelVersion=...]
+tasks.register<JavaExec>("scan") {
+    classpath = sourceSets["main"].runtimeClasspath
+    mainClass.set("ScannerKt")
+    systemProperty("fhirModelVersion", fhirModelVersion)
+}

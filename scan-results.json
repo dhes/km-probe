@@ -1,0 +1,1080 @@
+{
+    "fhirModelVersion": "1.0.0-rc02",
+    "packages": {
+        "smart-base": {
+            "name": "smart.who.int.base",
+            "version": "0.2.0",
+            "fhirVersion": "4.0.1",
+            "resources": 162,
+            "census": {
+                "ActivityDefinition": 1,
+                "Basic": 63,
+                "CodeSystem": 12,
+                "ConceptMap": 4,
+                "ImplementationGuide": 1,
+                "Questionnaire": 1,
+                "StructureDefinition": 56,
+                "ValueSet": 24
+            },
+            "expressionLanguages": {},
+            "cqlUsingResourcesByType": {},
+            "libraryContentTypes": {},
+            "parse": {
+                "ok": 161,
+                "blockedBy123": 0,
+                "otherFailures": 1,
+                "otherFailureKinds": {
+                    "IllegalArgumentException: Unknown code CC-BY-SA-3.0-IGO for enum SPDXLicense": 1
+                }
+            },
+            "dependencies": {
+                "hl7.fhir.r4.core": "4.0.1",
+                "hl7.terminology": "5.5.0",
+                "hl7.fhir.uv.extensions.r4": "5.1.0",
+                "hl7.fhir.uv.extensions.r5": "5.2.0",
+                "hl7.fhir.uv.cql": "1.0.0",
+                "hl7.fhir.uv.cpg": "2.0.0",
+                "hl7.fhir.uv.crmi": "1.0.0",
+                "hl7.fhir.uv.sdc": "3.0.0"
+            }
+        },
+        "smart-base-clinical": {
+            "name": "smart.who.int.base-clinical",
+            "version": "1.0.0",
+            "fhirVersion": "4.0.1",
+            "resources": 26,
+            "census": {
+                "ImplementationGuide": 1,
+                "StructureDefinition": 25
+            },
+            "expressionLanguages": {},
+            "cqlUsingResourcesByType": {},
+            "libraryContentTypes": {},
+            "parse": {
+                "ok": 25,
+                "blockedBy123": 0,
+                "otherFailures": 1,
+                "otherFailureKinds": {
+                    "IllegalArgumentException: Unknown code CC-BY-SA-3.0-IGO for enum SPDXLicense": 1
+                }
+            },
+            "dependencies": {
+                "hl7.fhir.r4.core": "4.0.1",
+                "hl7.terminology.r4": "6.4.0",
+                "hl7.fhir.uv.extensions.r4": "5.2.0",
+                "hl7.fhir.uv.cpg": "2.0.0",
+                "hl7.fhir.us.cqfmeasures": "5.0.0",
+                "smart.who.int.base": "0.1.0"
+            }
+        },
+        "smart-ccc": {
+            "name": "smart.who.int.ccc",
+            "version": "0.1.0",
+            "fhirVersion": "4.0.1",
+            "resources": 78,
+            "census": {
+                "ActivityDefinition": 18,
+                "ImplementationGuide": 1,
+                "Library": 22,
+                "PlanDefinition": 1,
+                "Questionnaire": 18,
+                "StructureMap": 18
+            },
+            "expressionLanguages": {
+                "text/cql-expression": 36,
+                "text/cql-identifier": 231,
+                "text/fhirpath": 424
+            },
+            "cqlUsingResourcesByType": {
+                "ActivityDefinition": 18,
+                "PlanDefinition": 1,
+                "Questionnaire": 14
+            },
+            "libraryContentTypes": {
+                "text/cql": 3
+            },
+            "parse": {
+                "ok": 45,
+                "blockedBy123": 33,
+                "otherFailures": 0,
+                "otherFailureKinds": {}
+            },
+            "dependencies": {
+                "hl7.fhir.r4.core": "4.0.1",
+                "hl7.terminology": "5.5.0",
+                "hl7.fhir.uv.extensions.r4": "5.1.0",
+                "hl7.fhir.uv.extensions.r5": "5.2.0",
+                "hl7.fhir.uv.cql": "1.0.0",
+                "hl7.fhir.uv.cpg": "2.0.0",
+                "hl7.fhir.uv.crmi": "1.0.0",
+                "hl7.fhir.uv.sdc": "3.0.0",
+                "smart.who.int.base": "current"
+            }
+        },
+        "smart-dak-bds": {
+            "name": "smart.who.int.dak-bds",
+            "version": "1.0.1",
+            "fhirVersion": "4.0.1",
+            "resources": 200,
+            "census": {
+                "Basic": 117,
+                "Binary": 80,
+                "CodeSystem": 1,
+                "ImplementationGuide": 1,
+                "ValueSet": 1
+            },
+            "expressionLanguages": {},
+            "cqlUsingResourcesByType": {},
+            "libraryContentTypes": {},
+            "parse": {
+                "ok": 200,
+                "blockedBy123": 0,
+                "otherFailures": 0,
+                "otherFailureKinds": {}
+            },
+            "dependencies": {
+                "hl7.fhir.r4.core": "4.0.1",
+                "hl7.terminology.r4": "6.4.0",
+                "hl7.fhir.uv.extensions.r4": "5.2.0",
+                "smart.who.int.base": "current"
+            }
+        },
+        "smart-dak-ccc": {
+            "name": "smart.who.int.dak-ccc",
+            "version": "1.0.0",
+            "fhirVersion": "4.0.1",
+            "resources": 398,
+            "census": {
+                "Basic": 201,
+                "Binary": 192,
+                "CodeSystem": 2,
+                "ImplementationGuide": 1,
+                "ValueSet": 2
+            },
+            "expressionLanguages": {},
+            "cqlUsingResourcesByType": {},
+            "libraryContentTypes": {},
+            "parse": {
+                "ok": 398,
+                "blockedBy123": 0,
+                "otherFailures": 0,
+                "otherFailureKinds": {}
+            },
+            "dependencies": {
+                "hl7.fhir.r4.core": "4.0.1",
+                "hl7.terminology.r4": "6.2.0",
+                "hl7.fhir.uv.extensions.r4": "5.2.0",
+                "smart.who.int.base": "current"
+            }
+        },
+        "smart-dak-chud": {
+            "name": "smart.who.int.dak-chud",
+            "version": "0.1.0",
+            "fhirVersion": "4.0.1",
+            "resources": 1,
+            "census": {
+                "ImplementationGuide": 1
+            },
+            "expressionLanguages": {},
+            "cqlUsingResourcesByType": {},
+            "libraryContentTypes": {},
+            "parse": {
+                "ok": 1,
+                "blockedBy123": 0,
+                "otherFailures": 0,
+                "otherFailureKinds": {}
+            },
+            "dependencies": {
+                "hl7.fhir.r4.core": "4.0.1",
+                "hl7.terminology.r4": "7.0.1",
+                "hl7.fhir.uv.extensions.r4": "5.2.0",
+                "smart.who.int.base": "0.2.0"
+            }
+        },
+        "smart-dak-empty": {
+            "name": "smart.who.int.dak-empty",
+            "version": "0.1.0",
+            "fhirVersion": "4.0.1",
+            "resources": 1,
+            "census": {
+                "ImplementationGuide": 1
+            },
+            "expressionLanguages": {},
+            "cqlUsingResourcesByType": {},
+            "libraryContentTypes": {},
+            "parse": {
+                "ok": 1,
+                "blockedBy123": 0,
+                "otherFailures": 0,
+                "otherFailureKinds": {}
+            },
+            "dependencies": {
+                "hl7.fhir.r4.core": "4.0.1",
+                "hl7.terminology.r4": "7.0.1",
+                "hl7.fhir.uv.extensions.r4": "5.2.0",
+                "smart.who.int.base": "0.2.0"
+            }
+        },
+        "smart-dak-immz": {
+            "name": "smart.who.int.dak-immz",
+            "version": "1.1.1",
+            "fhirVersion": "4.0.1",
+            "resources": 676,
+            "census": {
+                "Basic": 410,
+                "Binary": 261,
+                "CodeSystem": 2,
+                "ImplementationGuide": 1,
+                "ValueSet": 2
+            },
+            "expressionLanguages": {},
+            "cqlUsingResourcesByType": {},
+            "libraryContentTypes": {},
+            "parse": {
+                "ok": 676,
+                "blockedBy123": 0,
+                "otherFailures": 0,
+                "otherFailureKinds": {}
+            },
+            "dependencies": {
+                "hl7.fhir.r4.core": "4.0.1",
+                "hl7.terminology.r4": "6.2.0",
+                "hl7.fhir.uv.extensions.r4": "5.2.0",
+                "smart.who.int.base": "current"
+            }
+        },
+        "smart-dak-pnc": {
+            "name": "smart.who.int.dak-pnc",
+            "version": "0.9.9",
+            "fhirVersion": "4.0.1",
+            "resources": 1,
+            "census": {
+                "ImplementationGuide": 1
+            },
+            "expressionLanguages": {},
+            "cqlUsingResourcesByType": {},
+            "libraryContentTypes": {},
+            "parse": {
+                "ok": 1,
+                "blockedBy123": 0,
+                "otherFailures": 0,
+                "otherFailureKinds": {}
+            },
+            "dependencies": {
+                "hl7.fhir.r4.core": "4.0.1",
+                "hl7.terminology.r4": "6.5.0",
+                "hl7.fhir.uv.extensions.r4": "5.2.0",
+                "smart.who.int.base": "0.1.0"
+            }
+        },
+        "smart-dak-smbp": {
+            "name": "smart.who.int.dak-smbp",
+            "version": "1.0.1",
+            "fhirVersion": "4.0.1",
+            "resources": 1,
+            "census": {
+                "ImplementationGuide": 1
+            },
+            "expressionLanguages": {},
+            "cqlUsingResourcesByType": {},
+            "libraryContentTypes": {},
+            "parse": {
+                "ok": 1,
+                "blockedBy123": 0,
+                "otherFailures": 0,
+                "otherFailureKinds": {}
+            },
+            "dependencies": {
+                "hl7.fhir.r4.core": "4.0.1",
+                "hl7.terminology.r4": "6.4.0",
+                "hl7.fhir.uv.extensions.r4": "5.2.0",
+                "smart.who.int.base": "0.1.0"
+            }
+        },
+        "smart-dak-srv": {
+            "name": "smart.who.int.dak-srv",
+            "version": "1.0.1",
+            "fhirVersion": "4.0.1",
+            "resources": 1,
+            "census": {
+                "ImplementationGuide": 1
+            },
+            "expressionLanguages": {},
+            "cqlUsingResourcesByType": {},
+            "libraryContentTypes": {},
+            "parse": {
+                "ok": 1,
+                "blockedBy123": 0,
+                "otherFailures": 0,
+                "otherFailureKinds": {}
+            },
+            "dependencies": {
+                "hl7.fhir.r4.core": "4.0.1",
+                "hl7.terminology.r4": "7.0.1",
+                "hl7.fhir.uv.extensions.r4": "5.2.0",
+                "smart.who.int.base": "0.2.0"
+            }
+        },
+        "smart-dak-tb": {
+            "name": "smart.who.int.dak-tb",
+            "version": "1.0.2",
+            "fhirVersion": "4.0.1",
+            "resources": 1,
+            "census": {
+                "ImplementationGuide": 1
+            },
+            "expressionLanguages": {},
+            "cqlUsingResourcesByType": {},
+            "libraryContentTypes": {},
+            "parse": {
+                "ok": 1,
+                "blockedBy123": 0,
+                "otherFailures": 0,
+                "otherFailureKinds": {}
+            },
+            "dependencies": {
+                "hl7.fhir.r4.core": "4.0.1",
+                "hl7.terminology.r4": "6.0.0",
+                "hl7.fhir.uv.extensions.r4": "5.1.0",
+                "who.base": "current"
+            }
+        },
+        "smart-emcare-irq": {
+            "name": "who.fhir.emc-cds",
+            "version": "0.1.0",
+            "fhirVersion": "4.0.1",
+            "resources": 240,
+            "census": {
+                "ActivityDefinition": 18,
+                "CodeSystem": 2,
+                "ImplementationGuide": 1,
+                "Library": 37,
+                "PlanDefinition": 1,
+                "Questionnaire": 18,
+                "StructureDefinition": 71,
+                "StructureMap": 19,
+                "ValueSet": 73
+            },
+            "expressionLanguages": {
+                "text/cql-identifier": 247,
+                "text/fhirpath": 416
+            },
+            "cqlUsingResourcesByType": {
+                "ActivityDefinition": 18,
+                "PlanDefinition": 1,
+                "Questionnaire": 15
+            },
+            "libraryContentTypes": {
+                "text/cql": 37
+            },
+            "parse": {
+                "ok": 206,
+                "blockedBy123": 34,
+                "otherFailures": 0,
+                "otherFailureKinds": {}
+            },
+            "dependencies": {
+                "hl7.fhir.r4.core": "4.0.1",
+                "hl7.terminology.r4": "5.0.0",
+                "hl7.fhir.uv.extensions.r4": "1.0.0",
+                "hl7.fhir.uv.cpg": "1.0.0",
+                "hl7.fhir.us.cqfmeasures": "current"
+            }
+        },
+        "smart-example-anc": {
+            "name": "fhir.who.smart-ig-empty",
+            "version": "0.2.1",
+            "fhirVersion": "4.0.1",
+            "resources": 1,
+            "census": {
+                "ImplementationGuide": 1
+            },
+            "expressionLanguages": {},
+            "cqlUsingResourcesByType": {},
+            "libraryContentTypes": {},
+            "parse": {
+                "ok": 1,
+                "blockedBy123": 0,
+                "otherFailures": 0,
+                "otherFailureKinds": {}
+            },
+            "dependencies": {
+                "hl7.fhir.r4.core": "4.0.1",
+                "hl7.terminology.r4": "5.0.0"
+            }
+        },
+        "smart-example-immz": {
+            "name": "smart.who.int.immunizations-measles",
+            "version": "0.1.0",
+            "fhirVersion": "4.0.1",
+            "resources": 79,
+            "census": {
+                "ActivityDefinition": 3,
+                "CodeSystem": 3,
+                "ConceptMap": 4,
+                "ImplementationGuide": 1,
+                "Library": 20,
+                "PlanDefinition": 6,
+                "Questionnaire": 4,
+                "StructureDefinition": 10,
+                "StructureMap": 9,
+                "ValueSet": 19
+            },
+            "expressionLanguages": {
+                "application/x-fhir-query": 1,
+                "text/cql": 3,
+                "text/cql-identifier": 46
+            },
+            "cqlUsingResourcesByType": {
+                "ActivityDefinition": 3,
+                "PlanDefinition": 5
+            },
+            "libraryContentTypes": {
+                "application/elm+json": 20,
+                "application/elm+xml": 20,
+                "text/cql": 20
+            },
+            "parse": {
+                "ok": 73,
+                "blockedBy123": 6,
+                "otherFailures": 0,
+                "otherFailureKinds": {}
+            },
+            "dependencies": {
+                "hl7.fhir.r4.core": "4.0.1",
+                "hl7.terminology": "5.5.0",
+                "hl7.fhir.uv.extensions.r4": "5.1.0",
+                "hl7.fhir.uv.cql": "1.0.0",
+                "hl7.fhir.uv.crmi": "1.0.0",
+                "hl7.fhir.uv.sdc": "3.0.0",
+                "hl7.fhir.uv.cpg": "current",
+                "hl7.fhir.us.cqfmeasures": "current",
+                "fhir.cqf.common": "4.0.1"
+            }
+        },
+        "smart-hiv": {
+            "name": "smart.who.int.hiv",
+            "version": "0.4.4",
+            "fhirVersion": "4.0.1",
+            "resources": 514,
+            "census": {
+                "ActivityDefinition": 2,
+                "CodeSystem": 1,
+                "ExampleScenario": 3,
+                "ImplementationGuide": 1,
+                "Library": 109,
+                "PlanDefinition": 11,
+                "Questionnaire": 56,
+                "StructureDefinition": 63,
+                "ValueSet": 268
+            },
+            "expressionLanguages": {
+                "text/cql": 22,
+                "text/cql-identifier": 22
+            },
+            "cqlUsingResourcesByType": {
+                "ActivityDefinition": 2,
+                "PlanDefinition": 7
+            },
+            "libraryContentTypes": {
+                "application/elm+json": 109,
+                "text/cql": 109
+            },
+            "parse": {
+                "ok": 507,
+                "blockedBy123": 7,
+                "otherFailures": 0,
+                "otherFailureKinds": {}
+            },
+            "dependencies": {
+                "hl7.fhir.r4.core": "4.0.1",
+                "hl7.terminology": "5.5.0",
+                "hl7.fhir.uv.extensions.r4": "5.1.0",
+                "hl7.fhir.uv.cql": "1.0.0",
+                "hl7.fhir.uv.crmi": "1.0.0",
+                "hl7.fhir.uv.sdc": "3.0.0",
+                "hl7.fhir.uv.cpg": "2.0.0",
+                "hl7.fhir.us.cqfmeasures": "5.0.0",
+                "fhir.cqf.common": "4.0.1",
+                "smart.who.int.base": "0.2.0"
+            }
+        },
+        "smart-icvp": {
+            "name": "smart.who.int.icvp",
+            "version": "0.3.0",
+            "fhirVersion": "4.0.1",
+            "resources": 33,
+            "census": {
+                "CodeSystem": 1,
+                "ConceptMap": 3,
+                "ImplementationGuide": 1,
+                "Questionnaire": 1,
+                "StructureDefinition": 13,
+                "StructureMap": 7,
+                "ValueSet": 7
+            },
+            "expressionLanguages": {},
+            "cqlUsingResourcesByType": {},
+            "libraryContentTypes": {},
+            "parse": {
+                "ok": 32,
+                "blockedBy123": 0,
+                "otherFailures": 1,
+                "otherFailureKinds": {
+                    "IllegalArgumentException: Unknown code CC-BY-SA-3.0-IGO for enum SPDXLicense": 1
+                }
+            },
+            "dependencies": {
+                "hl7.fhir.r4.core": "4.0.1",
+                "hl7.terminology.r4": "6.5.0",
+                "hl7.fhir.uv.extensions.r4": "5.2.0",
+                "smart.who.int.base": "0.2.0",
+                "hl7.fhir.uv.ips": "2.0.0-ballot",
+                "hl7.fhir.uv.sdc": "3.0.0",
+                "ihe.iti.mcsd": "3.8.0",
+                "smart.who.int.ts": "0.1.0",
+                "smart.who.int.pcmt": "0.1.0",
+                "smart.who.int.trust-phw": "0.1.0",
+                "smart.who.int.pcmt-vaxprequal": "0.2.0"
+            }
+        },
+        "smart-ig-empty": {
+            "name": "smart.who.int.ig-empty",
+            "version": "0.1.0",
+            "fhirVersion": "4.0.1",
+            "resources": 1,
+            "census": {
+                "ImplementationGuide": 1
+            },
+            "expressionLanguages": {},
+            "cqlUsingResourcesByType": {},
+            "libraryContentTypes": {},
+            "parse": {
+                "ok": 0,
+                "blockedBy123": 0,
+                "otherFailures": 1,
+                "otherFailureKinds": {
+                    "IllegalArgumentException: Unknown code CC-BY-SA-3.0-IGO for enum SPDXLicense": 1
+                }
+            },
+            "dependencies": {
+                "hl7.fhir.r4.core": "4.0.1",
+                "hl7.terminology": "5.5.0",
+                "hl7.fhir.uv.extensions.r4": "5.1.0",
+                "hl7.fhir.uv.cql": "1.0.0",
+                "hl7.fhir.uv.crmi": "1.0.0",
+                "hl7.fhir.uv.sdc": "3.0.0",
+                "hl7.fhir.uv.cpg": "2.0.0",
+                "hl7.fhir.us.cqfmeasures": "5.0.0",
+                "smart.who.int.base": "0.1.0"
+            }
+        },
+        "smart-ig-starter-kit": {
+            "name": "smart.who.int.ig-starter-kit",
+            "version": "2.1.0",
+            "fhirVersion": "5.0.0",
+            "resources": 1,
+            "census": {
+                "ImplementationGuide": 1
+            },
+            "expressionLanguages": {},
+            "cqlUsingResourcesByType": {},
+            "libraryContentTypes": {},
+            "parse": {
+                "ok": 0,
+                "blockedBy123": 0,
+                "otherFailures": 1,
+                "otherFailureKinds": {
+                    "NullPointerException @ ImplementationGuide-smart.who.int.ig-starter-kit.json": 1
+                }
+            },
+            "dependencies": {
+                "hl7.terminology.r5": "7.0.0",
+                "hl7.fhir.uv.extensions.r5": "5.2.0"
+            }
+        },
+        "smart-ig-template": {
+            "name": "who.template.root",
+            "version": "0.5.0",
+            "fhirVersion": "",
+            "resources": 0,
+            "census": {},
+            "expressionLanguages": {},
+            "cqlUsingResourcesByType": {},
+            "libraryContentTypes": {},
+            "parse": {
+                "ok": 0,
+                "blockedBy123": 0,
+                "otherFailures": 0,
+                "otherFailureKinds": {}
+            },
+            "dependencies": {
+                "fhir.base.template": "1.0.0"
+            }
+        },
+        "smart-immunizations": {
+            "name": "smart.who.int.immunizations",
+            "version": "0.2.0",
+            "fhirVersion": "4.0.1",
+            "resources": 712,
+            "census": {
+                "ActivityDefinition": 3,
+                "CodeSystem": 6,
+                "ConceptMap": 3,
+                "ImplementationGuide": 1,
+                "Library": 279,
+                "Measure": 41,
+                "PlanDefinition": 138,
+                "Questionnaire": 10,
+                "StructureDefinition": 23,
+                "StructureMap": 16,
+                "ValueSet": 192
+            },
+            "expressionLanguages": {
+                "text/cql-expression": 959,
+                "text/cql-identifier": 857,
+                "text/fhirpath": 28
+            },
+            "cqlUsingResourcesByType": {
+                "Measure": 41,
+                "PlanDefinition": 138
+            },
+            "libraryContentTypes": {
+                "application/elm+xml": 279,
+                "text/cql": 279
+            },
+            "parse": {
+                "ok": 533,
+                "blockedBy123": 179,
+                "otherFailures": 0,
+                "otherFailureKinds": {}
+            },
+            "dependencies": {
+                "hl7.fhir.r4.core": "4.0.1",
+                "hl7.terminology.r4": "7.2.0",
+                "smart.who.int.base": "0.2.0",
+                "hl7.fhir.uv.extensions.r4": "5.1.0",
+                "hl7.fhir.uv.cql": "1.0.0",
+                "hl7.fhir.uv.crmi": "1.0.0",
+                "hl7.fhir.uv.sdc": "3.0.0",
+                "hl7.fhir.uv.cpg": "2.0.0",
+                "hl7.fhir.us.cqfmeasures": "5.0.0",
+                "fhir.cqf.common": "4.0.1"
+            }
+        },
+        "smart-ips-pilgrimage": {
+            "name": "smart.who.int.ips-pilgrimage",
+            "version": "2.1.0",
+            "fhirVersion": "4.0.1",
+            "resources": 26,
+            "census": {
+                "CapabilityStatement": 1,
+                "CodeSystem": 8,
+                "ImplementationGuide": 1,
+                "Questionnaire": 1,
+                "StructureDefinition": 6,
+                "ValueSet": 9
+            },
+            "expressionLanguages": {},
+            "cqlUsingResourcesByType": {},
+            "libraryContentTypes": {},
+            "parse": {
+                "ok": 25,
+                "blockedBy123": 0,
+                "otherFailures": 1,
+                "otherFailureKinds": {
+                    "IllegalArgumentException: Unknown code CC-BY-SA-3.0-IGO for enum SPDXLicense": 1
+                }
+            },
+            "dependencies": {
+                "hl7.fhir.r4.core": "4.0.1",
+                "hl7.terminology.r4": "6.3.0",
+                "hl7.fhir.uv.extensions.r4": "5.2.0",
+                "smart.who.int.base": "0.1.0",
+                "ihe.iti.mcsd": "3.8.0",
+                "hl7.fhir.uv.ips": "1.1.0",
+                "hl7.fhir.uv.sdc": "3.0.0",
+                "hl7.fhir.uv.cpg": "2.0.0",
+                "ihe.iti.pcf": "1.1.0",
+                "ihe.iti.mhd": "4.2.2"
+            }
+        },
+        "smart-l2-hhas": {
+            "name": "smart.who.int.l2-hhas",
+            "version": "0.1.0",
+            "fhirVersion": "4.0.1",
+            "resources": 1,
+            "census": {
+                "ImplementationGuide": 1
+            },
+            "expressionLanguages": {},
+            "cqlUsingResourcesByType": {},
+            "libraryContentTypes": {},
+            "parse": {
+                "ok": 1,
+                "blockedBy123": 0,
+                "otherFailures": 0,
+                "otherFailureKinds": {}
+            },
+            "dependencies": {
+                "hl7.fhir.r4.core": "4.0.1",
+                "hl7.terminology.r4": "7.0.1",
+                "hl7.fhir.uv.extensions.r4": "5.2.0",
+                "smart.who.int.base": "0.2.0"
+            }
+        },
+        "smart-ot": {
+            "name": "fhir.worldhealthorganization.smart-ot",
+            "version": "0.2.1",
+            "fhirVersion": "4.0.1",
+            "resources": 149,
+            "census": {
+                "Bundle": 1,
+                "CodeSystem": 40,
+                "ImplementationGuide": 1,
+                "Questionnaire": 4,
+                "StructureDefinition": 56,
+                "StructureMap": 7,
+                "ValueSet": 40
+            },
+            "expressionLanguages": {},
+            "cqlUsingResourcesByType": {},
+            "libraryContentTypes": {},
+            "parse": {
+                "ok": 148,
+                "blockedBy123": 0,
+                "otherFailures": 1,
+                "otherFailureKinds": {
+                    "NullPointerException @ Bundle-example-document-bundle-case-report-1.json": 1
+                }
+            },
+            "dependencies": {
+                "hl7.fhir.r4.core": "4.0.1",
+                "hl7.terminology.r4": "5.3.0",
+                "hl7.fhir.uv.extensions.r4": "1.0.0",
+                "hl7.fhir.uv.sdc": "3.0.0"
+            }
+        },
+        "smart-pcmt": {
+            "name": "smart.who.int.pcmt",
+            "version": "0.2.0",
+            "fhirVersion": "4.0.1",
+            "resources": 15,
+            "census": {
+                "CodeSystem": 5,
+                "ImplementationGuide": 1,
+                "StructureDefinition": 4,
+                "ValueSet": 5
+            },
+            "expressionLanguages": {},
+            "cqlUsingResourcesByType": {},
+            "libraryContentTypes": {},
+            "parse": {
+                "ok": 15,
+                "blockedBy123": 0,
+                "otherFailures": 0,
+                "otherFailureKinds": {}
+            },
+            "dependencies": {
+                "hl7.fhir.r4.core": "4.0.1",
+                "hl7.terminology.r4": "7.0.1",
+                "hl7.fhir.uv.extensions.r4": "5.2.0",
+                "smart.who.int.base": "current",
+                "ihe.iti.mcsd": "3.8.0"
+            }
+        },
+        "smart-pcmt-vaxprequal": {
+            "name": "smart.who.int.pcmt-vaxprequal",
+            "version": "0.2.0",
+            "fhirVersion": "5.0.0",
+            "resources": 18,
+            "census": {
+                "CodeSystem": 4,
+                "ImplementationGuide": 1,
+                "StructureDefinition": 9,
+                "ValueSet": 4
+            },
+            "expressionLanguages": {},
+            "cqlUsingResourcesByType": {},
+            "libraryContentTypes": {},
+            "parse": {
+                "ok": 8,
+                "blockedBy123": 0,
+                "otherFailures": 10,
+                "otherFailureKinds": {
+                    "IllegalArgumentException: Unknown code 5.0.0 for enum FHIRVersion": 9,
+                    "NullPointerException @ ImplementationGuide-smart.who.int.pcmt-vaxprequal.json": 1
+                }
+            },
+            "dependencies": {
+                "hl7.terminology.r5": "7.1.0",
+                "hl7.fhir.uv.extensions.r5": "5.2.0",
+                "smart.who.int.base": "0.1.0",
+                "smart.who.int.pcmt": "0.1.0",
+                "ihe.iti.mcsd": "4.0.0"
+            }
+        },
+        "smart-ph4h": {
+            "name": "smart.who.int.ph4h",
+            "version": "0.1.0",
+            "fhirVersion": "4.0.1",
+            "resources": 4,
+            "census": {
+                "ImplementationGuide": 1,
+                "StructureDefinition": 3
+            },
+            "expressionLanguages": {},
+            "cqlUsingResourcesByType": {},
+            "libraryContentTypes": {},
+            "parse": {
+                "ok": 4,
+                "blockedBy123": 0,
+                "otherFailures": 0,
+                "otherFailureKinds": {}
+            },
+            "dependencies": {
+                "hl7.fhir.r4.core": "4.0.1",
+                "hl7.terminology.r4": "6.0.2",
+                "hl7.fhir.uv.extensions.r4": "5.1.0",
+                "smart.who.int.base": "current",
+                "hl7.fhir.uv.sdc": "3.0.0",
+                "hl7.fhir.uv.ips": "1.1.0",
+                "ihe.iti.pcf": "1.1.0",
+                "hl7.fhir.uv.cpg": "current"
+            }
+        },
+        "smart-ra": {
+            "name": "smart.who.int.ra",
+            "version": "0.2.0",
+            "fhirVersion": "4.0.1",
+            "resources": 10,
+            "census": {
+                "Basic": 9,
+                "ImplementationGuide": 1
+            },
+            "expressionLanguages": {},
+            "cqlUsingResourcesByType": {},
+            "libraryContentTypes": {},
+            "parse": {
+                "ok": 9,
+                "blockedBy123": 0,
+                "otherFailures": 1,
+                "otherFailureKinds": {
+                    "IllegalArgumentException: Unknown code CC-BY-SA-3.0-IGO for enum SPDXLicense": 1
+                }
+            },
+            "dependencies": {
+                "hl7.fhir.r4.core": "4.0.1",
+                "hl7.terminology": "5.5.0",
+                "hl7.fhir.uv.extensions.r4": "5.1.0",
+                "hl7.fhir.uv.cql": "1.0.0",
+                "hl7.fhir.uv.crmi": "1.0.0",
+                "hl7.fhir.uv.sdc": "3.0.0",
+                "hl7.fhir.uv.cpg": "2.0.0",
+                "hl7.fhir.us.cqfmeasures": "5.0.0",
+                "hl7.fhir.uv.extensions.r5": "5.2.0",
+                "ihe.iti.mcsd": "4.0.0",
+                "ihe.iti.svcm": "1.5.1",
+                "smart.who.int.pcmt": "0.1.0",
+                "smart.who.int.base": "0.1.0"
+            }
+        },
+        "smart-refmart": {
+            "name": "smart.who.int.refmart",
+            "version": "0.1.0",
+            "fhirVersion": "4.0.1",
+            "resources": 9,
+            "census": {
+                "CodeSystem": 3,
+                "ConceptMap": 2,
+                "ImplementationGuide": 1,
+                "ValueSet": 3
+            },
+            "expressionLanguages": {},
+            "cqlUsingResourcesByType": {},
+            "libraryContentTypes": {},
+            "parse": {
+                "ok": 8,
+                "blockedBy123": 0,
+                "otherFailures": 1,
+                "otherFailureKinds": {
+                    "IllegalArgumentException: Unknown code CC-BY-SA-3.0-IGO for enum SPDXLicense": 1
+                }
+            },
+            "dependencies": {
+                "hl7.fhir.r4.core": "4.0.1",
+                "hl7.terminology": "5.5.0",
+                "hl7.fhir.uv.extensions.r4": "5.1.0",
+                "hl7.fhir.uv.cql": "1.0.0",
+                "hl7.fhir.uv.crmi": "1.0.0",
+                "hl7.fhir.uv.sdc": "3.0.0",
+                "hl7.fhir.uv.cpg": "2.0.0",
+                "hl7.fhir.us.cqfmeasures": "5.0.0",
+                "smart.who.int.base": "0.1.0"
+            }
+        },
+        "smart-trust": {
+            "name": "smart.who.int.trust",
+            "version": "1.8.0",
+            "fhirVersion": "5.0.0",
+            "resources": 634,
+            "census": {
+                "ActorDefinition": 5,
+                "CodeSystem": 15,
+                "ConceptMap": 1,
+                "Endpoint": 423,
+                "ImplementationGuide": 1,
+                "Organization": 141,
+                "Requirements": 29,
+                "StructureDefinition": 5,
+                "ValueSet": 14
+            },
+            "expressionLanguages": {},
+            "cqlUsingResourcesByType": {},
+            "libraryContentTypes": {},
+            "parse": {
+                "ok": 170,
+                "blockedBy123": 0,
+                "otherFailures": 464,
+                "otherFailureKinds": {
+                    "IllegalArgumentException: Unknown code 5.0.0 for enum FHIRVersion": 5,
+                    "JsonDecodingException: Unexpected JSON token at offset 0: Serializer for subclass 'ActorDefinition' is not found in the polymorphic scope of 'Resource' at path: $": 5,
+                    "JsonDecodingException: Unexpected JSON token at offset 0: Serializer for subclass 'Requirements' is not found in the polymorphic scope of 'Resource' at path: $": 29,
+                    "JsonDecodingException: Unexpected JSON token at offset 1152: Expected start of the object '{', but had '[' instead at path: $.connectionType": 1,
+                    "JsonDecodingException: Unexpected JSON token at offset 1182: Expected start of the object '{', but had '[' instead at path: $.connectionType": 2,
+                    "JsonDecodingException: Unexpected JSON token at offset 1216: Expected start of the object '{', but had '[' instead at path: $.connectionType": 2,
+                    "JsonDecodingException: Unexpected JSON token at offset 1218: Expected start of the object '{', but had '[' instead at path: $.connectionType": 3,
+                    "JsonDecodingException: Unexpected JSON token at offset 1220: Expected start of the object '{', but had '[' instead at path: $.connectionType": 7,
+                    "JsonDecodingException: Unexpected JSON token at offset 1222: Expected start of the object '{', but had '[' instead at path: $.connectionType": 10,
+                    "JsonDecodingException: Unexpected JSON token at offset 1224: Expected start of the object '{', but had '[' instead at path: $.connectionType": 5,
+                    "JsonDecodingException: Unexpected JSON token at offset 1226: Expected start of the object '{', but had '[' instead at path: $.connectionType": 3,
+                    "JsonDecodingException: Unexpected JSON token at offset 1228: Expected start of the object '{', but had '[' instead at path: $.connectionType": 1,
+                    "JsonDecodingException: Unexpected JSON token at offset 1230: Expected start of the object '{', but had '[' instead at path: $.connectionType": 1,
+                    "JsonDecodingException: Unexpected JSON token at offset 1234: Expected start of the object '{', but had '[' instead at path: $.connectionType": 1,
+                    "JsonDecodingException: Unexpected JSON token at offset 1246: Expected start of the object '{', but had '[' instead at path: $.connectionType": 5,
+                    "JsonDecodingException: Unexpected JSON token at offset 1248: Expected start of the object '{', but had '[' instead at path: $.connectionType": 5,
+                    "JsonDecodingException: Unexpected JSON token at offset 1249: Expected start of the object '{', but had '[' instead at path: $.connectionType": 4,
+                    "JsonDecodingException: Unexpected JSON token at offset 1250: Expected start of the object '{', but had '[' instead at path: $.connectionType": 14,
+                    "JsonDecodingException: Unexpected JSON token at offset 1251: Expected start of the object '{', but had '[' instead at path: $.connectionType": 6,
+                    "JsonDecodingException: Unexpected JSON token at offset 1252: Expected start of the object '{', but had '[' instead at path: $.connectionType": 18,
+                    "JsonDecodingException: Unexpected JSON token at offset 1253: Expected start of the object '{', but had '[' instead at path: $.connectionType": 14,
+                    "JsonDecodingException: Unexpected JSON token at offset 1254: Expected start of the object '{', but had '[' instead at path: $.connectionType": 12,
+                    "JsonDecodingException: Unexpected JSON token at offset 1255: Expected start of the object '{', but had '[' instead at path: $.connectionType": 20,
+                    "JsonDecodingException: Unexpected JSON token at offset 1256: Expected start of the object '{', but had '[' instead at path: $.connectionType": 8,
+                    "JsonDecodingException: Unexpected JSON token at offset 1257: Expected start of the object '{', but had '[' instead at path: $.connectionType": 10,
+                    "JsonDecodingException: Unexpected JSON token at offset 1258: Expected start of the object '{', but had '[' instead at path: $.connectionType": 3,
+                    "JsonDecodingException: Unexpected JSON token at offset 1259: Expected start of the object '{', but had '[' instead at path: $.connectionType": 6,
+                    "JsonDecodingException: Unexpected JSON token at offset 1260: Expected start of the object '{', but had '[' instead at path: $.connectionType": 3,
+                    "JsonDecodingException: Unexpected JSON token at offset 1261: Expected start of the object '{', but had '[' instead at path: $.connectionType": 2,
+                    "JsonDecodingException: Unexpected JSON token at offset 1262: Expected start of the object '{', but had '[' instead at path: $.connectionType": 1,
+                    "JsonDecodingException: Unexpected JSON token at offset 1263: Expected start of the object '{', but had '[' instead at path: $.connectionType": 2,
+                    "JsonDecodingException: Unexpected JSON token at offset 1264: Expected start of the object '{', but had '[' instead at path: $.connectionType": 2,
+                    "JsonDecodingException: Unexpected JSON token at offset 1267: Expected start of the object '{', but had '[' instead at path: $.connectionType": 2,
+                    "JsonDecodingException: Unexpected JSON token at offset 1274: Expected start of the object '{', but had '[' instead at path: $.connectionType": 1,
+                    "JsonDecodingException: Unexpected JSON token at offset 1276: Expected start of the object '{', but had '[' instead at path: $.connectionType": 33,
+                    "JsonDecodingException: Unexpected JSON token at offset 1279: Expected start of the object '{', but had '[' instead at path: $.connectionType": 10,
+                    "JsonDecodingException: Unexpected JSON token at offset 1281: Expected start of the object '{', but had '[' instead at path: $.connectionType": 10,
+                    "JsonDecodingException: Unexpected JSON token at offset 1283: Expected start of the object '{', but had '[' instead at path: $.connectionType": 28,
+                    "JsonDecodingException: Unexpected JSON token at offset 1285: Expected start of the object '{', but had '[' instead at path: $.connectionType": 36,
+                    "JsonDecodingException: Unexpected JSON token at offset 1286: Expected start of the object '{', but had '[' instead at path: $.connectionType": 1,
+                    "JsonDecodingException: Unexpected JSON token at offset 1287: Expected start of the object '{', but had '[' instead at path: $.connectionType": 24,
+                    "JsonDecodingException: Unexpected JSON token at offset 1289: Expected start of the object '{', but had '[' instead at path: $.connectionType": 16,
+                    "JsonDecodingException: Unexpected JSON token at offset 1291: Expected start of the object '{', but had '[' instead at path: $.connectionType": 6,
+                    "JsonDecodingException: Unexpected JSON token at offset 1293: Expected start of the object '{', but had '[' instead at path: $.connectionType": 6,
+                    "JsonDecodingException: Unexpected JSON token at offset 1294: Expected start of the object '{', but had '[' instead at path: $.connectionType": 1,
+                    "JsonDecodingException: Unexpected JSON token at offset 1295: Expected start of the object '{', but had '[' instead at path: $.connectionType": 2,
+                    "JsonDecodingException: Unexpected JSON token at offset 1297: Expected start of the object '{', but had '[' instead at path: $.connectionType": 4,
+                    "JsonDecodingException: Unexpected JSON token at offset 1307: Expected start of the object '{', but had '[' instead at path: $.connectionType": 2,
+                    "JsonDecodingException: Unexpected JSON token at offset 1309: Expected start of the object '{', but had '[' instead at path: $.connectionType": 66,
+                    "JsonDecodingException: Unexpected JSON token at offset 1319: Expected start of the object '{', but had '[' instead at path: $.connectionType": 2,
+                    "JsonDecodingException: Unexpected JSON token at offset 1327: Expected start of the object '{', but had '[' instead at path: $.connectionType": 2,
+                    "NullPointerException @ ConceptMap-ParticipantsToWHORegionalOffices.json": 1,
+                    "NullPointerException @ ImplementationGuide-smart.who.int.trust.json": 1
+                }
+            },
+            "dependencies": {
+                "hl7.terminology.r5": "7.3.0",
+                "hl7.fhir.uv.extensions.r5": "5.2.0",
+                "smart.who.int.base": "0.2.0",
+                "smart.who.int.trust-phw": "0.1.0",
+                "who.ddcc": "1.0.1",
+                "ihe.iti.mcsd": "3.8.0",
+                "smart.who.int.ph4h": "0.9.9",
+                "hl7.fhir.r5.core": "5.0.0"
+            }
+        },
+        "smart-trust-phw": {
+            "name": "smart.who.int.trust-phw",
+            "version": "0.1.0",
+            "fhirVersion": "5.0.0",
+            "resources": 57,
+            "census": {
+                "ActorDefinition": 6,
+                "CodeSystem": 5,
+                "ConceptMap": 1,
+                "ImplementationGuide": 1,
+                "Questionnaire": 1,
+                "Requirements": 8,
+                "StructureDefinition": 31,
+                "ValueSet": 4
+            },
+            "expressionLanguages": {},
+            "cqlUsingResourcesByType": {},
+            "libraryContentTypes": {},
+            "parse": {
+                "ok": 9,
+                "blockedBy123": 0,
+                "otherFailures": 48,
+                "otherFailureKinds": {
+                    "IllegalArgumentException: Unknown code 5.0.0 for enum FHIRVersion": 31,
+                    "IllegalArgumentException: Unknown code coding for enum QuestionnaireItemType": 1,
+                    "JsonDecodingException: Unexpected JSON token at offset 0: Serializer for subclass 'ActorDefinition' is not found in the polymorphic scope of 'Resource' at path: $": 6,
+                    "JsonDecodingException: Unexpected JSON token at offset 0: Serializer for subclass 'Requirements' is not found in the polymorphic scope of 'Resource' at path: $": 8,
+                    "NullPointerException @ ConceptMap-ICVP.Core.ConceptMap.json": 1,
+                    "NullPointerException @ ImplementationGuide-smart.who.int.trust-phw.json": 1
+                }
+            },
+            "dependencies": {
+                "hl7.fhir.uv.extensions.r5": "5.2.0",
+                "hl7.terminology": "5.5.0",
+                "hl7.fhir.uv.cql": "1.0.0",
+                "hl7.fhir.uv.crmi": "1.0.0",
+                "hl7.fhir.uv.sdc": "3.0.0",
+                "hl7.fhir.uv.cpg": "2.0.0",
+                "hl7.fhir.us.cqfmeasures": "5.0.0",
+                "hl7.fhir.uv.ips": "2.0.0-ballot",
+                "ihe.iti.mcsd": "3.8.0",
+                "smart.who.int.pcmt": "0.1.0",
+                "smart.who.int.base": "0.2.0",
+                "smart.who.int.pcmt-vaxprequal": "current"
+            }
+        },
+        "smart-ts": {
+            "name": "smart.who.int.ts",
+            "version": "0.1.0",
+            "fhirVersion": "4.0.1",
+            "resources": 2,
+            "census": {
+                "CodeSystem": 1,
+                "ImplementationGuide": 1
+            },
+            "expressionLanguages": {},
+            "cqlUsingResourcesByType": {},
+            "libraryContentTypes": {},
+            "parse": {
+                "ok": 1,
+                "blockedBy123": 0,
+                "otherFailures": 1,
+                "otherFailureKinds": {
+                    "IllegalArgumentException: Unknown code CC-BY-SA-3.0-IGO for enum SPDXLicense": 1
+                }
+            },
+            "dependencies": {
+                "hl7.fhir.r4.core": "4.0.1",
+                "hl7.terminology.r4": "6.1.0",
+                "hl7.fhir.uv.extensions.r4": "5.1.0",
+                "smart.who.int.base": "0.1.0"
+            }
+        }
+    }
+}

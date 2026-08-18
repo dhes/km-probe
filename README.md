@@ -50,3 +50,24 @@ paste-ready summary for the issue. (Manual equivalents:
 
 A fixed model turns the three expected `[FAIL]` findings into `[PASS]` and the import's
 183 load errors into 4 (the non-resource files).
+
+## WHO SMART corpus readiness scanner
+
+The probe generalized from one package to the whole `WorldHealthOrganization/smart-*`
+corpus: fetch a package for every repo, then report per package — resource census,
+`Expression.language` census (`text/cql-identifier` vs `text/fhirpath` ...),
+`Library.content` attachment types (CQL source vs ELM), dependencies, and a per-resource
+kotlin-fhir parse with failures classified as
+[kotlin-fhir#123](https://github.com/ohs-foundation/kotlin-fhir/issues/123) vs other.
+
+    ./fetch-corpus.sh                            # all smart-* repos -> corpus-scan/
+    ./gradlew scan -PfhirModelVersion=1.0.0-rc02 # -> READINESS.md + scan-results.json
+
+`fetch-corpus.sh` tries, in order: the build.fhir.org auto-builder tip, WHO's own CI tip
+on `worldhealthorganization.github.io`, the current publication on `smart.who.int`, and
+the packages2.fhir.org registry; `corpus-scan/manifest.tsv` records which one each repo
+got. Needs `gh` (repo enumeration) and `python3` (package.json fields).
+
+[READINESS.md](READINESS.md) is the committed output: the ranked matrix plus per-repo
+notes. Re-run both commands to refresh it — e.g. after a kotlin-fhir release, where the
+"blocked #123" column collapsing to zero is the corpus-scale acceptance signal.
