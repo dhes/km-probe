@@ -41,8 +41,12 @@ To validate a candidate fix for
 [ohs-foundation/kotlin-fhir#123](https://github.com/ohs-foundation/kotlin-fhir/issues/123),
 override the model version:
 
-    ./gradlew repro -PfhirModelVersion=<fixed-version>   # should print "Parsed: PlanDefinition"
-    ./gradlew run   -PfhirModelVersion=<fixed-version>   # census: PlanDefinition 0 -> 138, Measure 0 -> 41
+    ./accept-123.sh                    # newest Maven Central version, full verdict
+    ./accept-123.sh 1.0.0-rc03         # or a specific version
+
+The script runs the minimal repro plus the full corpus import and prints a
+paste-ready summary for the issue. (Manual equivalents:
+\`./gradlew repro -PfhirModelVersion=...\` and \`./gradlew run -PfhirModelVersion=...\`.)
 
 A fixed model turns the three expected `[FAIL]` findings into `[PASS]` and the import's
 183 load errors into 4 (the non-resource files).
