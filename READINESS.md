@@ -20,10 +20,10 @@ are version mismatch, not defects.
 
 | repo | version | source | resources | PD | Measure | Library | CQL-using | cql-identifier exprs | fhirpath exprs | blocked #123 | other parse fails | CQL src | ELM |
 |---|---|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---|---|
-| smart-immunizations | 0.2.0 | ci | 712 | 138 | 41 | 279 | 179 | 857 | 28 | 179 | 0 | yes | xml |
+| smart-immunizations | 0.2.0† | ci | 712 | 138 | 41 | 279 | 179 | 857 | 28 | 179 | 0 | yes | xml |
 | smart-emcare-irq | 0.1.0 | ghpages | 240 | 1 | 0 | 37 | 34 | 247 | 416 | 34 | 0 | yes | - |
 | smart-ccc | 0.1.0 | ghpages | 78 | 1 | 0 | 22 | 33 | 231 | 424 | 33 | 0 | yes | - |
-| smart-hiv | 0.4.4 | ghpages | 514 | 11 | 0 | 109 | 9 | 22 | 0 | 7 | 0 | yes | json |
+| smart-hiv | 0.4.4† | ghpages | 514 | 11 | 0 | 109 | 9 | 22 | 0 | 7 | 0 | yes | json |
 | smart-example-immz | 0.1.0 | ghpages | 79 | 6 | 0 | 20 | 8 | 46 | 0 | 6 | 0 | yes | xml+json |
 | smart-base | 0.2.0 | ghpages | 162 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | - | - |
 | smart-base-clinical | 1.0.0 | ghpages | 26 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | - | - |
@@ -52,10 +52,13 @@ are version mismatch, not defects.
 | smart-trust-phw ⚠R5 | 0.1.0 | ghpages | 57 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 48 | - | - |
 | smart-ts | 0.1.0 | ghpages | 2 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | - | - |
 
+† version differs from the repo's visible release state — see the per-repo note.
+
 ## Per-repo notes
 
 ### smart-immunizations — `smart.who.int.immunizations` 0.2.0
 
+- **version note:** GitHub release v1.0.0 (2026-07-20) tags the SAME commit as the scanned main tip — the version was never bumped on main, so the release content self-identifies as 0.2.0. The 1.0.0-labeled build lives on the release-candidate branch (version bump, publication-request.json, narrative templates, measure test data; no resource-content changes). No formal publication at smart.who.int/immunizations yet, and the package is absent from the FHIR registry.
 - census: ActivityDefinition 3, CodeSystem 6, ConceptMap 3, ImplementationGuide 1, Library 279, Measure 41, PlanDefinition 138, Questionnaire 10, StructureDefinition 23, StructureMap 16, ValueSet 192
 - expression languages: `text/cql-expression` ×959, `text/cql-identifier` ×857, `text/fhirpath` ×28
 - CQL-using resources: Measure 41, PlanDefinition 138
@@ -83,6 +86,7 @@ are version mismatch, not defects.
 
 ### smart-hiv — `smart.who.int.hiv` 0.4.4
 
+- **version note:** gh-pages CI tip self-identifies as 0.4.4, but the formal publication at smart.who.int/hiv is 1.0.0 with near-identical content (512 resources, 8 CQL-using, 6 blocked by #123).
 - census: ActivityDefinition 2, CodeSystem 1, ExampleScenario 3, ImplementationGuide 1, Library 109, PlanDefinition 11, Questionnaire 56, StructureDefinition 63, ValueSet 268
 - expression languages: `text/cql` ×22, `text/cql-identifier` ×22
 - CQL-using resources: ActivityDefinition 2, PlanDefinition 7

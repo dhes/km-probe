@@ -41,6 +41,20 @@ val CQL_LANGUAGES = EXPRESSION_LANGUAGES - setOf("text/fhirpath", "application/x
 
 val lenientJson = Json { ignoreUnknownKeys = true }
 
+// Curated notes where the package's self-declared version disagrees with the repo's visible
+// release state — the corpus has real version hygiene quirks worth pinning down once.
+val VERSION_NOTES = mapOf(
+    "smart-immunizations" to "GitHub release v1.0.0 (2026-07-20) tags the SAME commit as the " +
+        "scanned main tip — the version was never bumped on main, so the release content " +
+        "self-identifies as 0.2.0. The 1.0.0-labeled build lives on the release-candidate " +
+        "branch (version bump, publication-request.json, narrative templates, measure test " +
+        "data; no resource-content changes). No formal publication at " +
+        "smart.who.int/immunizations yet, and the package is absent from the FHIR registry.",
+    "smart-hiv" to "gh-pages CI tip self-identifies as 0.4.4, but the formal publication at " +
+        "smart.who.int/hiv is 1.0.0 with near-identical content (512 resources, 8 CQL-using, " +
+        "6 blocked by #123).",
+)
+
 class PackageScan(val repo: String) {
     var name = ""
     var version = ""
@@ -235,16 +249,20 @@ fun writeReadinessMd(scans: List<PackageScan>, misses: List<String>, sources: Ma
                 if ((s.libraryContentTypes["application/elm+json"] ?: 0) > 0) add("json")
             }.ifEmpty { listOf("-") }.joinToString("+")
             val r5Mark = if (s.fhirVersion.isNotEmpty() && !s.fhirVersion.startsWith("4")) " ⚠R5" else ""
-            appendLine("| ${s.repo}$r5Mark | ${s.version} | ${sources[s.repo] ?: "?"} | ${s.totalResources} | ${s.census["PlanDefinition"] ?: 0} " +
+            val noteMark = if (s.repo in VERSION_NOTES) "†" else ""
+            appendLine("| ${s.repo}$r5Mark | ${s.version}$noteMark | ${sources[s.repo] ?: "?"} | ${s.totalResources} | ${s.census["PlanDefinition"] ?: 0} " +
                 "| ${s.census["Measure"] ?: 0} | ${s.census["Library"] ?: 0} | ${s.cqlUsingTotal} | $cqlIdExprs " +
                 "| $fhirpathExprs | ${s.parseFail123} | ${s.parseFailOther} | $cqlSrc | $elm |")
         }
+        appendLine()
+        appendLine("† version differs from the repo's visible release state — see the per-repo note.")
         appendLine()
         appendLine("## Per-repo notes")
         appendLine()
         for (s in ranked) {
             appendLine("### ${s.repo} — `${s.name}` ${s.version}")
             appendLine()
+            VERSION_NOTES[s.repo]?.let { appendLine("- **version note:** $it") }
             appendLine("- census: " + s.census.entries.joinToString { "${it.key} ${it.value}" })
             if (s.exprLanguages.isNotEmpty())
                 appendLine("- expression languages: " + s.exprLanguages.entries.joinToString { "`${it.key}` ×${it.value}" })
