@@ -46,7 +46,7 @@ override the model version:
 
 The script runs the minimal repro plus the full corpus import and prints a
 paste-ready summary for the issue. (Manual equivalents:
-\`./gradlew repro -PfhirModelVersion=...\` and \`./gradlew run -PfhirModelVersion=...\`.)
+`./gradlew repro -PfhirModelVersion=...` and `./gradlew run -PfhirModelVersion=...`.)
 
 A fixed model turns the three expected `[FAIL]` findings into `[PASS]` and the import's
 183 load errors into 4 (the non-resource files).
