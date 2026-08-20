@@ -23,8 +23,17 @@ if [ $# -gt 0 ]; then
 else
   REPOS=$(gh api --paginate 'orgs/WorldHealthOrganization/repos?per_page=100' \
     --jq '.[] | select(.name | startswith("smart")) | .name' | sort)
-  printf 'repo\tstatus\tsource\tpackage\tversion\tfhirVersion\n' > "$MANIFEST"
+  printf 'repo\tstatus\tsource\tpackage\tversion\tfhirVersion\tsrcCql\n' > "$MANIFEST"
 fi
+
+# Count .cql files on the repo's default branch — surfaces authored-but-unpublished CQL
+# (e.g. smart-anc: >100 CQL files, ghbuild red for weeks, no fetchable package anywhere).
+src_cql_count() { # repo
+  local n
+  n=$(gh api "repos/WorldHealthOrganization/$1/git/trees/HEAD?recursive=1" \
+    --jq '[.tree[].path | select(endswith(".cql"))] | length' 2>/dev/null)
+  case "$n" in ''|*[!0-9]*) echo "?" ;; *) echo "$n" ;; esac
+}
 
 pkg_field() { # file key
   python3 -c "import json,sys;v=json.load(open(sys.argv[1])).get(sys.argv[2],'');print(','.join(v) if isinstance(v,list) else v)" "$1" "$2" 2>/dev/null || echo "?"
@@ -58,8 +67,9 @@ for e in json.load(sys.stdin):
   fi
 
   if [ -z "$source" ]; then
-    printf '%s\tMISS\t\t\t\t\n' "$repo" >> "$MANIFEST"
-    echo "MISS  $repo  (no ci/canonical/registry package)"
+    srcCql=$(src_cql_count "$repo")
+    printf '%s\tMISS\t\t\t\t\t%s\n' "$repo" "$srcCql" >> "$MANIFEST"
+    echo "MISS  $repo  (no ci/ghpages/canonical/registry package; $srcCql .cql in source)"
     rm -f "$tgz"
     continue
   fi
@@ -71,8 +81,9 @@ for e in json.load(sys.stdin):
     name=$(pkg_field "$pkg_json" name)
     version=$(pkg_field "$pkg_json" version)
     fhirv=$(pkg_field "$pkg_json" fhirVersions)
-    printf '%s\tOK\t%s\t%s\t%s\t%s\n' "$repo" "$source" "$name" "$version" "$fhirv" >> "$MANIFEST"
-    echo "OK    $repo  ($name $version, $source)"
+    srcCql=$(src_cql_count "$repo")
+    printf '%s\tOK\t%s\t%s\t%s\t%s\t%s\n' "$repo" "$source" "$name" "$version" "$fhirv" "$srcCql" >> "$MANIFEST"
+    echo "OK    $repo  ($name $version, $source; $srcCql .cql in source)"
   else
     printf '%s\tEXTRACT_FAIL\t%s\t\t\t\n' "$repo" "$source" >> "$MANIFEST"
     echo "FAIL  $repo  ($source tgz extract failed)"

@@ -46,3 +46,8 @@ tasks.register<JavaExec>("scan") {
     mainClass.set("ScannerKt")
     systemProperty("fhirModelVersion", fhirModelVersion)
 }
+
+tasks.register<JavaExec>("scratchNpe") {
+    classpath = sourceSets["main"].runtimeClasspath
+    mainClass.set("ScratchNpeKt")
+}

@@ -12,7 +12,8 @@ are version mismatch, not defects.
 
 ## Headline
 
-- 31 smart-* repos publish a CI package; 13 have none (non-IG repos or broken CI).
+- 31 smart-* repos publish a fetchable package; 13 have none (non-IG repos or broken CI).
+- **Publication is the corpus's own bottleneck: ~293 authored .cql files sit in repos with no fetchable package at all** (see the misses list) — invisible to every consumer of published content. CQL "concentration" in the matrix partly reflects whose build pipeline works, not who has authored logic.
 - 4052 resources total; **263 use CQL-family expressions** (`text/cql-identifier` et al.) that no deployed FHIRPath-only runtime can execute.
 - **259 resources across 5 repos fail to parse on kotlin-fhir 1.0.0-rc02 solely due to #123** — including 157 PlanDefinitions and 41 Measures corpus-wide.
 
@@ -72,6 +73,7 @@ are version mismatch, not defects.
 - expression languages: `text/cql-identifier` ×247, `text/fhirpath` ×416
 - CQL-using resources: ActivityDefinition 18, PlanDefinition 1, Questionnaire 15
 - Library attachments: `text/cql` ×37
+- **stale/partial publication:** 60 .cql in repo source vs 37 CQL attachments in the fetched package
 - parse (fhir-model 1.0.0-rc02): 206 ok, 34 blocked by #123, 0 other
 - dependencies: hl7.fhir.r4.core@4.0.1, hl7.terminology.r4@5.0.0, hl7.fhir.uv.extensions.r4@1.0.0, hl7.fhir.uv.cpg@1.0.0, hl7.fhir.us.cqfmeasures@current
 
@@ -81,6 +83,7 @@ are version mismatch, not defects.
 - expression languages: `text/cql-expression` ×36, `text/cql-identifier` ×231, `text/fhirpath` ×424
 - CQL-using resources: ActivityDefinition 18, PlanDefinition 1, Questionnaire 14
 - Library attachments: `text/cql` ×3
+- **stale/partial publication:** 56 .cql in repo source vs 3 CQL attachments in the fetched package
 - parse (fhir-model 1.0.0-rc02): 45 ok, 33 blocked by #123, 0 other
 - dependencies: hl7.fhir.r4.core@4.0.1, hl7.terminology@5.5.0, hl7.fhir.uv.extensions.r4@5.1.0, hl7.fhir.uv.extensions.r5@5.2.0, hl7.fhir.uv.cql@1.0.0, hl7.fhir.uv.cpg@2.0.0, hl7.fhir.uv.crmi@1.0.0, hl7.fhir.uv.sdc@3.0.0, smart.who.int.base@current
 
@@ -100,6 +103,7 @@ are version mismatch, not defects.
 - expression languages: `application/x-fhir-query` ×1, `text/cql` ×3, `text/cql-identifier` ×46
 - CQL-using resources: ActivityDefinition 3, PlanDefinition 5
 - Library attachments: `application/elm+json` ×20, `application/elm+xml` ×20, `text/cql` ×20
+- **stale/partial publication:** 22 .cql in repo source vs 20 CQL attachments in the fetched package
 - parse (fhir-model 1.0.0-rc02): 73 ok, 6 blocked by #123, 0 other
 - dependencies: hl7.fhir.r4.core@4.0.1, hl7.terminology@5.5.0, hl7.fhir.uv.extensions.r4@5.1.0, hl7.fhir.uv.cql@1.0.0, hl7.fhir.uv.crmi@1.0.0, hl7.fhir.uv.sdc@3.0.0, hl7.fhir.uv.cpg@current, hl7.fhir.us.cqfmeasures@current, fhir.cqf.common@4.0.1
 
@@ -332,16 +336,16 @@ are version mismatch, not defects.
 
 ## Repos without a CI package
 
-- smart-anc (MISS)
+- smart-anc (MISS) — 115 .cql in source, unpublished
 - smart-base-old (MISS)
 - smart-core (MISS)
 - smart-dak-example-immz (MISS)
 - smart-data-dictionary (MISS)
-- smart-emcare-cmr (MISS)
-- smart-fp (MISS)
-- smart-html (MISS)
-- smart-immunizations-measles-catopia (MISS)
-- smart-sti (MISS)
+- smart-emcare-cmr (MISS) — 45 .cql in source, unpublished
+- smart-fp (MISS) — 1 .cql in source, unpublished
+- smart-html (MISS) — 117 .cql in source, unpublished
+- smart-immunizations-measles-catopia (MISS) — 14 .cql in source, unpublished
+- smart-sti (MISS) — 1 .cql in source, unpublished
 - smart-terminologies (MISS)
 - smart-trust-network-gateway (MISS)
 - smart-tuberculosis (MISS)

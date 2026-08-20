@@ -160,10 +160,14 @@ fun main() {
 
     val misses = mutableListOf<String>()
     val sources = mutableMapOf<String, String>()
+    val srcCql = mutableMapOf<String, Int>()
     File(corpusDir, "manifest.tsv").takeIf { it.isFile }?.readLines()?.drop(1)?.forEach {
         val cols = it.split('\t')
-        if (cols.size >= 2 && cols[1] != "OK") misses += "${cols[0]} (${cols[1]})"
-        else if (cols.size >= 3) sources[cols[0]] = cols[2]
+        cols.getOrNull(6)?.toIntOrNull()?.let { n -> srcCql[cols[0]] = n }
+        if (cols.size >= 2 && cols[1] != "OK") {
+            val hidden = srcCql[cols[0]]?.takeIf { n -> n > 0 }?.let { n -> " — $n .cql in source, unpublished" } ?: ""
+            misses += "${cols[0]} (${cols[1]})$hidden"
+        } else if (cols.size >= 3) sources[cols[0]] = cols[2]
     }
 
     val scans = corpusDir.listFiles { f: File -> f.isDirectory }!!.sortedBy { it.name }
@@ -177,7 +181,7 @@ fun main() {
         }
 
     writeResultsJson(scans, modelVersion)
-    writeReadinessMd(scans, misses, sources, modelVersion)
+    writeReadinessMd(scans, misses, sources, srcCql, modelVersion)
     println("\nWrote READINESS.md and scan-results.json (model: $modelVersion)")
 }
 
@@ -203,7 +207,7 @@ fun writeResultsJson(scans: List<PackageScan>, modelVersion: String) {
     File("scan-results.json").writeText(Json { prettyPrint = true }.encodeToString(JsonObject.serializer(), out))
 }
 
-fun writeReadinessMd(scans: List<PackageScan>, misses: List<String>, sources: Map<String, String>, modelVersion: String) {
+fun writeReadinessMd(scans: List<PackageScan>, misses: List<String>, sources: Map<String, String>, srcCql: Map<String, Int>, modelVersion: String) {
     val content = scans.filter { it.totalResources > 0 }
     val ranked = content.sortedWith(
         compareByDescending<PackageScan> { it.cqlUsingTotal }.thenByDescending { it.decisionLogicCount })
@@ -230,7 +234,13 @@ fun writeReadinessMd(scans: List<PackageScan>, misses: List<String>, sources: Ma
         appendLine()
         appendLine("## Headline")
         appendLine()
-        appendLine("- ${content.size} smart-* repos publish a CI package; ${misses.size} have none (non-IG repos or broken CI).")
+        appendLine("- ${content.size} smart-* repos publish a fetchable package; ${misses.size} have none (non-IG repos or broken CI).")
+        val hiddenCql = misses.sumOf { m -> srcCql[m.substringBefore(" (")] ?: 0 }
+        if (hiddenCql > 0) {
+            appendLine("- **Publication is the corpus's own bottleneck: ~$hiddenCql authored .cql files sit in repos with " +
+                "no fetchable package at all** (see the misses list) — invisible to every consumer of published content. " +
+                "CQL \"concentration\" in the matrix partly reflects whose build pipeline works, not who has authored logic.")
+        }
         appendLine("- $totalRes resources total; **$totalCqlUsing use CQL-family expressions** " +
             "(`text/cql-identifier` et al.) that no deployed FHIRPath-only runtime can execute.")
         appendLine("- **$totalBlocked resources across $blockedRepos repos fail to parse on kotlin-fhir $modelVersion " +
@@ -270,6 +280,11 @@ fun writeReadinessMd(scans: List<PackageScan>, misses: List<String>, sources: Ma
                 appendLine("- CQL-using resources: " + s.cqlUsingByType.entries.joinToString { "${it.key} ${it.value}" })
             if (s.libraryContentTypes.isNotEmpty())
                 appendLine("- Library attachments: " + s.libraryContentTypes.entries.joinToString { "`${it.key}` ×${it.value}" })
+            val srcCount = srcCql[s.repo]
+            val publishedCql = s.libraryContentTypes["text/cql"] ?: 0
+            if (srcCount != null && srcCount > publishedCql) {
+                appendLine("- **stale/partial publication:** $srcCount .cql in repo source vs $publishedCql CQL attachments in the fetched package")
+            }
             appendLine("- parse (fhir-model $modelVersion): ${s.parseOk} ok, ${s.parseFail123} blocked by #123, ${s.parseFailOther} other")
             s.otherFailMessages.forEach { (k, v) -> appendLine("    - $v× $k") }
             if (s.dependencies.isNotEmpty())
