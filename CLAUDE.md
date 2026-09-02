@@ -17,6 +17,14 @@ rc02 baseline (READINESS-rc02-baseline.md): 259 resources blocked by kotlin-fhir
 Expected post-#123 result: 0 blocked; other-fails column unchanged (smart-trust 464,
 smart-trust-phw 48, smart-pcmt-vaxprequal 10, ~1 each elsewhere).
 
+## Verifying your work
+
+- Acceptance: `./accept-123.sh <V>` must end `== VERDICT: ACCEPTED ==` with
+  `repro: PASS`, `indexed PlanDefinition: 138`, `indexed Measure: 41`.
+- Scan: `./gradlew scan -PfhirModelVersion=<V>` then diff READINESS.md against
+  READINESS-rc02-baseline.md — 0 blocked, other-fails column unchanged.
+- Run the relevant one before reporting done, and paste the output.
+
 ## Gotchas
 
 - Testing an unreleased kotlin-fhir build: publish **all** modules to mavenLocal, not just
