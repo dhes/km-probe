@@ -25,6 +25,15 @@ smart-trust-phw 48, smart-pcmt-vaxprequal 10, ~1 each elsewhere).
   READINESS-rc02-baseline.md — 0 blocked, other-fails column unchanged.
 - Run the relevant one before reporting done, and paste the output.
 
+## CI eval
+
+`.github/workflows/corpus-eval.yml` runs weekly (Mon 16:00 UTC) and on dispatch:
+tripwire on any fhir-model version newer than its `KNOWN_VERSION`, repro + full scan,
+loud failure on a new version. `-PciEval` drops the mavenLocal-only fhir-knowledge dep
+and excludes KmProbe.kt — so the CI cannot run the 138/41 KM census; that stays local
+via accept-123.sh. On accepting a new version: bump `KNOWN_VERSION` in the workflow and
+commit a fresh READINESS-<ver>-baseline.md.
+
 ## Gotchas
 
 - Testing an unreleased kotlin-fhir build: publish **all** modules to mavenLocal, not just
