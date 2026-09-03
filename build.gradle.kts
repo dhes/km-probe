@@ -14,8 +14,13 @@ repositories {
 // A fixed model should take the PlanDefinition census from 0 to 138 and Measures from 0 to 41.
 val fhirModelVersion = providers.gradleProperty("fhirModelVersion").getOrElse("1.0.0-beta05")
 
+// CI eval mode (-PciEval): fhir-knowledge:2.0.0-alpha01 exists only in mavenLocal (built
+// from kotlin-fhir-knowledge PR #2), so CI drops it and the one source file that needs it
+// (KmProbe.kt). The repro and scanner run on fhir-model alone.
+val ciEval = providers.gradleProperty("ciEval").isPresent
+
 dependencies {
-    implementation("dev.ohs.fhir:fhir-knowledge:2.0.0-alpha01")
+    if (!ciEval) implementation("dev.ohs.fhir:fhir-knowledge:2.0.0-alpha01")
     // Workaround: fhir-knowledge returns model.r4.Resource in its public API but declares
     // fhir-model as implementation, not api — consumers must add it themselves to compile.
     implementation("dev.ohs.fhir:fhir-model:$fhirModelVersion")
@@ -32,6 +37,10 @@ configurations.all {
 }
 
 kotlin { jvmToolchain(21) } // fhir-knowledge desktop artifact is compiled for JVM 21
+
+if (ciEval) {
+    sourceSets["main"].kotlin.exclude("KmProbe.kt")
+}
 
 application { mainClass.set("KmProbeKt") }
 
