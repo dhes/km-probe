@@ -243,8 +243,14 @@ fun writeReadinessMd(scans: List<PackageScan>, misses: List<String>, sources: Ma
         }
         appendLine("- $totalRes resources total; **$totalCqlUsing use CQL-family expressions** " +
             "(`text/cql-identifier` et al.) that no deployed FHIRPath-only runtime can execute.")
-        appendLine("- **$totalBlocked resources across $blockedRepos repos fail to parse on kotlin-fhir $modelVersion " +
-            "solely due to #123** — including $totalPd PlanDefinitions and $totalMeasure Measures corpus-wide.")
+        if (totalBlocked == 0) {
+            appendLine("- **No resources fail to parse on kotlin-fhir $modelVersion due to #123.** The corpus holds " +
+                "$totalPd PlanDefinitions and $totalMeasure Measures; on 1.0.0-rc02, 259 resources across 5 repos " +
+                "were blocked (see READINESS-rc02-baseline.md).")
+        } else {
+            appendLine("- **$totalBlocked resources across $blockedRepos repos fail to parse on kotlin-fhir $modelVersion " +
+                "solely due to #123.** The corpus holds $totalPd PlanDefinitions and $totalMeasure Measures.")
+        }
         appendLine()
         appendLine("## Matrix (ranked by CQL-using resources — decision-logic density)")
         appendLine()

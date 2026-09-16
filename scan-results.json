@@ -1,5 +1,5 @@
 {
-    "fhirModelVersion": "1.0.0-rc02",
+    "fhirModelVersion": "1.0.0-rc03",
     "packages": {
         "smart-base": {
             "name": "smart.who.int.base",
@@ -94,8 +94,8 @@
                 "text/cql": 3
             },
             "parse": {
-                "ok": 45,
-                "blockedBy123": 33,
+                "ok": 78,
+                "blockedBy123": 0,
                 "otherFailures": 0,
                 "otherFailureKinds": {}
             },
@@ -368,8 +368,8 @@
                 "text/cql": 37
             },
             "parse": {
-                "ok": 206,
-                "blockedBy123": 34,
+                "ok": 240,
+                "blockedBy123": 0,
                 "otherFailures": 0,
                 "otherFailureKinds": {}
             },
@@ -435,8 +435,8 @@
                 "text/cql": 20
             },
             "parse": {
-                "ok": 73,
-                "blockedBy123": 6,
+                "ok": 79,
+                "blockedBy123": 0,
                 "otherFailures": 0,
                 "otherFailureKinds": {}
             },
@@ -481,8 +481,8 @@
                 "text/cql": 109
             },
             "parse": {
-                "ok": 507,
-                "blockedBy123": 7,
+                "ok": 514,
+                "blockedBy123": 0,
                 "otherFailures": 0,
                 "otherFailureKinds": {}
             },
@@ -585,7 +585,7 @@
                 "blockedBy123": 0,
                 "otherFailures": 1,
                 "otherFailureKinds": {
-                    "NullPointerException @ ImplementationGuide-smart.who.int.ig-starter-kit.json": 1
+                    "SerializationException: Missing required property 'name' on ImplementationGuide.Definition.Page": 1
                 }
             },
             "dependencies": {
@@ -644,8 +644,8 @@
                 "text/cql": 279
             },
             "parse": {
-                "ok": 533,
-                "blockedBy123": 179,
+                "ok": 712,
+                "blockedBy123": 0,
                 "otherFailures": 0,
                 "otherFailureKinds": {}
             },
@@ -745,7 +745,7 @@
                 "blockedBy123": 0,
                 "otherFailures": 1,
                 "otherFailureKinds": {
-                    "NullPointerException @ Bundle-example-document-bundle-case-report-1.json": 1
+                    "SerializationException: Missing required property 'status' on Encounter": 1
                 }
             },
             "dependencies": {
@@ -803,7 +803,7 @@
                 "otherFailures": 10,
                 "otherFailureKinds": {
                     "IllegalArgumentException: Unknown code 5.0.0 for enum FHIRVersion": 9,
-                    "NullPointerException @ ImplementationGuide-smart.who.int.pcmt-vaxprequal.json": 1
+                    "SerializationException: Missing required property 'name' on ImplementationGuide.Definition.Page": 1
                 }
             },
             "dependencies": {
@@ -988,8 +988,8 @@
                     "JsonDecodingException: Unexpected JSON token at offset 1309: Expected start of the object '{', but had '[' instead at path: $.connectionType": 66,
                     "JsonDecodingException: Unexpected JSON token at offset 1319: Expected start of the object '{', but had '[' instead at path: $.connectionType": 2,
                     "JsonDecodingException: Unexpected JSON token at offset 1327: Expected start of the object '{', but had '[' instead at path: $.connectionType": 2,
-                    "NullPointerException @ ConceptMap-ParticipantsToWHORegionalOffices.json": 1,
-                    "NullPointerException @ ImplementationGuide-smart.who.int.trust.json": 1
+                    "SerializationException: Missing required property 'equivalence' on ConceptMap.Group.Element.Target": 1,
+                    "SerializationException: Missing required property 'name' on ImplementationGuide.Definition.Page": 1
                 }
             },
             "dependencies": {
@@ -1030,8 +1030,8 @@
                     "IllegalArgumentException: Unknown code coding for enum QuestionnaireItemType": 1,
                     "JsonDecodingException: Unexpected JSON token at offset 0: Serializer for subclass 'ActorDefinition' is not found in the polymorphic scope of 'Resource' at path: $": 6,
                     "JsonDecodingException: Unexpected JSON token at offset 0: Serializer for subclass 'Requirements' is not found in the polymorphic scope of 'Resource' at path: $": 8,
-                    "NullPointerException @ ConceptMap-ICVP.Core.ConceptMap.json": 1,
-                    "NullPointerException @ ImplementationGuide-smart.who.int.trust-phw.json": 1
+                    "SerializationException: Missing required property 'equivalence' on ConceptMap.Group.Element.Target": 1,
+                    "SerializationException: Missing required property 'name' on ImplementationGuide.Definition.Page": 1
                 }
             },
             "dependencies": {
