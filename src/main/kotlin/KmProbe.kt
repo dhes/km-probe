@@ -1,5 +1,7 @@
 import dev.ohs.fhir.knowledge.FhirNpmPackage
+import dev.ohs.fhir.knowledge.ImportResult
 import dev.ohs.fhir.knowledge.KnowledgeManager
+import java.io.File
 import kotlin.system.measureNanoTime
 import kotlinx.coroutines.runBlocking
 import okio.Path.Companion.toPath
@@ -20,9 +22,9 @@ val CORPUS: String =
 val IMMUNIZATIONS = FhirNpmPackage("smart.who.int.immunizations", "0.2.0", "http://smart.who.int/immunizations")
 val DAK_SKELETON = FhirNpmPackage("smart.who.int.dak-immz", "1.1.0", "http://smart.who.int/dak-immz")
 
-// One known artifact per type, straight from the corpus files. PlanDefinition is expected to MISS
-// until kotlin-fhir accepts text/cql-identifier (closed ExpressionLanguage enum vs the extensible
-// R4 binding): none of the 138 PDs or 41 Measures deserialize, so none index.
+// One known artifact per type, straight from the corpus files. PlanDefinition MISSED on
+// fhir-model beta05 (closed ExpressionLanguage enum rejected text/cql-identifier, kotlin-fhir#123);
+// fixed in rc03, which the PR #2 branch now pins.
 val CANONICAL_SAMPLES =
     listOf(
         "http://smart.who.int/immunizations/Library/IMMZIND33Logic",
@@ -40,6 +42,11 @@ val ENUMERABLE_TYPES =
 
 val findings = mutableListOf<String>()
 
+fun report(r: ImportResult) {
+    println("  ImportResult: indexed=${r.indexed} skipped=${r.skipped} failed=${r.failed.size}")
+    r.failed.forEach { println("    failed: ${it.name}") }
+}
+
 fun expect(label: String, want: Int, got: Int) {
     val ok = want == got
     println("  [${if (ok) "PASS" else "FAIL"}] $label: got $got, want $want")
@@ -50,10 +57,13 @@ fun main() = runBlocking {
     val km = KnowledgeManager.create(inMemory = true)
 
     // -- 1. Import the immunizations CI package (extracted-package path) --
+    lateinit var immzResult: ImportResult
     val importNanos = measureNanoTime {
-        km.import(IMMUNIZATIONS, "$CORPUS/immunizations/package".toPath())
+        immzResult = km.import(IMMUNIZATIONS, "$CORPUS/immunizations/package".toPath())
     }
     println("import(immunizations, 716 files): ${importNanos / 1_000_000} ms")
+    report(immzResult)
+    expect("immunizations import: failed files", 0, immzResult.failed.size)
 
     // -- 2. Index census per type (deprecated enumeration API is the only way to count) --
     @Suppress("DEPRECATION")
@@ -81,8 +91,29 @@ fun main() = runBlocking {
     expect("  unknown URL", 0, km.loadResources("http://smart.who.int/immunizations/Library/NoSuchThing").count())
 
     // -- 5. Second IG import; both must stay resolvable --
-    km.import(DAK_SKELETON, "$CORPUS/dak-immz/package".toPath())
+    val dakResult = km.import(DAK_SKELETON, "$CORPUS/dak-immz/package".toPath())
+    report(dakResult)
+    // The dak-immz ImplementationGuide carries license CC-BY-SA-3.0-IGO, absent from the R4 SPDX
+    // value set (required binding), so it fails to parse. Expected: it must show up in `failed`.
+    expect("dak-immz import: failed files (the IG, closed SPDXLicense enum)", 1, dakResult.failed.size)
     expect("cross-IG: immunizations Library after dak-immz import", 1, km.loadResources(VERSIONED_URL).count())
+
+    // -- 6. Persistent index scoped by application id; re-import must be a no-op, not an FK crash --
+    println("persistent index (PR #2 findings #2 and #6):")
+    val appId = "dhes.km-probe"
+    val appDir = File(System.getProperty("user.home"), ".fhir-knowledge/$appId")
+    appDir.deleteRecursively()
+    val persistent = KnowledgeManager.create(platformContext = appId)
+    val first = persistent.import(IMMUNIZATIONS, "$CORPUS/immunizations/package".toPath())
+    val second = persistent.import(IMMUNIZATIONS, "$CORPUS/immunizations/package".toPath())
+    expect("  storage scoped under ~/.fhir-knowledge/$appId (knowledge.db present)", 1,
+        if (File(appDir, "knowledge.db").isFile) 1 else 0)
+    expect("  first import indexed", immzResult.indexed, first.indexed)
+    expect("  second import of the same package: indexed (skip, no FK crash)", 0, second.indexed)
+    @Suppress("DEPRECATION")
+    expect("  PlanDefinition census after the double import", 138,
+        persistent.loadResources(resourceType = "PlanDefinition").count())
+    appDir.deleteRecursively()
 
     println()
     if (findings.isEmpty()) println("All checks passed.")

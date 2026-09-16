@@ -12,7 +12,7 @@ repositories {
 // Acceptance runs for ohs-foundation/kotlin-fhir#123: override the model version to test a
 // candidate fix, e.g.  ./gradlew run -PfhirModelVersion=1.0.0-rc03
 // A fixed model should take the PlanDefinition census from 0 to 138 and Measures from 0 to 41.
-val fhirModelVersion = providers.gradleProperty("fhirModelVersion").getOrElse("1.0.0-beta05")
+val fhirModelVersion = providers.gradleProperty("fhirModelVersion").getOrElse("1.0.0-rc03") // PR #2 branch pins rc03 since 2026-09-14
 
 // CI eval mode (-PciEval): fhir-knowledge:2.0.0-alpha01 exists only in mavenLocal (built
 // from kotlin-fhir-knowledge PR #2), so CI drops it and the one source file that needs it
