@@ -3,8 +3,9 @@ name: Corpus eval
 # Continuous eval for the kotlin-fhir model against the WHO smart-* corpus.
 # - Tripwire: a fhir-model version newer than KNOWN_VERSION on Maven Central fails
 #   the run loudly, with repro + full 31-package scan results attached.
-# - Baseline: while KNOWN_VERSION is latest, the repro must still fail (it is the
-#   known-broken version) and the scan is diffed against the committed baseline;
+# - Baseline: while KNOWN_VERSION is latest, the repro must still pass (#123 is fixed
+#   there; rc02 was the known-broken baseline until 2026-09-28) and the scan is diffed
+#   against the committed baseline;
 #   drift is reported in the job summary but is not a failure (corpus tips move —
 #   that is WHO-side news, not a model regression).
 #
@@ -22,7 +23,8 @@ on:
         required: false
 
 env:
-  KNOWN_VERSION: 1.0.0-rc02
+  KNOWN_VERSION: 1.0.0-rc03
+  BASELINE: READINESS-rc03-baseline.md
 
 permissions:
   contents: read
@@ -103,28 +105,28 @@ jobs:
               echo "## :rotating_light: NEW fhir-model VERSION: $V"
               echo "Failing deliberately so this gets seen. Next steps (local):"
               echo '1. `./accept-123.sh '"$V"'` (full KM census — needs mavenLocal fhir-knowledge)'
-              echo "2. Review the attached READINESS.md against the rc02 baseline"
+              echo "2. Review the attached READINESS.md against $BASELINE"
               echo "3. Update KNOWN_VERSION in this workflow + commit new baseline"
             } >> "$GITHUB_STEP_SUMMARY"
             exit 1
           fi
 
-          # Baseline path: rc02 is immutable, so the repro must still FAIL on it.
-          if [ "$REPRO" = "PASS" ]; then
-            echo "::error::repro unexpectedly PASSED on known-broken $V — eval assumptions broken"
+          # Baseline path: #123 is fixed in the known version, so the repro must PASS.
+          if [ "$REPRO" != "PASS" ]; then
+            echo "::error::repro FAILED on known-good $V — #123 regression or eval assumptions broken"
             exit 1
           fi
 
           # Corpus drift vs committed baseline: warn, don't fail.
-          if ! diff -q READINESS-rc02-baseline.md READINESS.md > /dev/null 2>&1; then
+          if ! diff -q "$BASELINE" READINESS.md > /dev/null 2>&1; then
             {
               echo ""
-              echo "### :warning: Scan drifted from committed rc02 baseline (corpus-side change)"
+              echo "### :warning: Scan drifted from committed $BASELINE (corpus-side change)"
               echo '```diff'
-              diff READINESS-rc02-baseline.md READINESS.md | head -60
+              diff "$BASELINE" READINESS.md | head -60
               echo '```'
             } >> "$GITHUB_STEP_SUMMARY"
           else
             echo "" >> "$GITHUB_STEP_SUMMARY"
-            echo "Scan matches committed rc02 baseline exactly." >> "$GITHUB_STEP_SUMMARY"
+            echo "Scan matches committed $BASELINE exactly." >> "$GITHUB_STEP_SUMMARY"
           fi
