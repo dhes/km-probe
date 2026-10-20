@@ -23,8 +23,8 @@ on:
         required: false
 
 env:
-  KNOWN_VERSION: 1.0.0-rc03
-  BASELINE: READINESS-rc03-baseline.md
+  KNOWN_VERSION: 1.0.0-rc04
+  BASELINE: READINESS-rc04-baseline.md
 
 permissions:
   contents: read
