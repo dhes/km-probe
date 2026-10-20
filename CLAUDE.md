@@ -39,4 +39,13 @@ commit a fresh READINESS-<ver>-baseline.md.
 - Testing an unreleased kotlin-fhir build: publish **all** modules to mavenLocal, not just
   fhir-model — partial publishes resolve stale transitive modules. Signing must be disabled
   locally (vanniktech plugin signs everything): use an init script that disables Sign tasks.
-- ELM in the corpus is XML, not JSON.
+- ELM in the corpus is XML, not JSON — except smart-anc, whose CI-fetched package (0.3.0, 2026-10-19) carries
+  `application/elm+json` on 63 Libraries.
+
+## Open items (2026-10-19)
+
+- Refresh the local corpus (`./fetch-corpus.sh`) and regenerate READINESS-rc04-baseline.md from it. The baseline is
+  still the 2026-08-19 corpus, so the weekly CI run reports drift (e.g. smart-anc newly published) as a warning.
+- smart-anc now publishes (build.fhir.org CI, 0.3.0): 40 PlanDefinitions, 13 Measures, 64 Libraries, 63 with
+  `application/elm+json`; 38 resources fail to parse on rc04 (mostly test data missing required elements). Check
+  whether its ELM records a `translatorVersion` and loads; candidate second corpus for the CQL spike.
